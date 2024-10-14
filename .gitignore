@@ -7,13 +7,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Environment Variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
 # Vite output
 dist/
 
@@ -44,9 +37,6 @@ coverage/
 build/
 .cache/
 .vite/
-
-# pnpm workspace files
-pnpm-lock.yaml
 
 # Prisma files (if using Prisma ORM)
 prisma/migrations/
