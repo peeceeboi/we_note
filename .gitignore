@@ -1,24 +1,62 @@
+# Node modules
+node_modules/
+
 # Logs
-logs
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Vite output
+dist/
+
+# TypeScript
+*.tsbuildinfo
+
+# SWC cache
+.swc/
+
+# Tailwind CSS output
+.tailwind/
+
+# IDE specific files (VSCode)
+.vscode/
+.idea/
+
+# macOS system files
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
+# Temporary files
+*.tmp
+*.temp
+
+# Coverage directory used by testing frameworks
+coverage/
+
+# Build artifacts and cache
+build/
+.cache/
+.vite/
+
+# pnpm workspace files
+pnpm-lock.yaml
+
+# Prisma files (if using Prisma ORM)
+prisma/migrations/
+prisma/dev.db
+
+# Local Docker files
+docker-compose.override.yml
+
+# JetBrains Rider project specific
+.idea/
+
+# Uploads directory
+uploads/

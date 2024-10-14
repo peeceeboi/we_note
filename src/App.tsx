@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useRef, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import ProtectedRoute from './components/ProtectedRoute'; // Import ProtectedRoute
+import Dashboard from './pages/Dashboard'; // Dashboard page
+import Profile from './pages/Profile'; // Profile page
+import Recover from './pages/Recover';
+import ChangePassword from './pages/ChangePassword';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const editorRef = useRef<HTMLDivElement>(null);
+  const settingsRef = useRef<HTMLDivElement>(null);
+
+  const scrollToTarget = (target: 'editor' | 'settings') => {
+    if (target === 'editor') {
+      editorRef.current?.scrollIntoView({ behavior: 'smooth' });
+    } else if (target === 'settings') {
+      settingsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    document.title = 'Note Taking App';
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        {/* Protected Routes */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Public Routes */}
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/recover" element={<Recover />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
